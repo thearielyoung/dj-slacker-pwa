@@ -16,9 +16,7 @@ const styles = {
   },
   footer: {
     fontSize: "12px",
-    position: "absolute",
-    left: '0',
-    bottom: '0',
+    marginTop: "48px",
     justifyContent: "center"
   }
 };
@@ -29,10 +27,10 @@ class App extends Component {
       <div className="App" style={styles.root}>
         <h1 style={styles.heading}>DJ Slacker - PWA</h1>
         <Grid container spacing={12}>
-          <Grid item xs={4}>
+          <Grid item xs={12} sm={4}>
             <Users />
           </Grid>
-          <Grid item xs={8}>
+          <Grid item xs={12} sm={8}>
             <Songs />
           </Grid>
         </Grid>
