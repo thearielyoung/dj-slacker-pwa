@@ -1,9 +1,14 @@
 import React from 'react';
+import './Song.css'
 
 function Song(props) {
   return (
     <li className="song-info">
-    {props.song.user}: {props.song.track.item.name} -- {props.song.track.item.artists[0].name}
+    <span className="track">
+      {props.song.user}:
+
+      <iframe className="album-art" src={`https://open.spotify.com/embed/track/${props.song.track.item.id}`} width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      </span>
   </li>
   );
 }
