@@ -8,7 +8,8 @@ import "./App.css";
 const styles = {
   root: {
     maxWidth: "1000px",
-    margin: "auto"
+    margin: "auto",
+    padding: "12px"
   },
   heading: {
     textAlign: "center",
