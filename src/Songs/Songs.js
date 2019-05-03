@@ -4,11 +4,14 @@ import Grid from "@material-ui/core/Grid";
 import Song from "../Song/Song";
 import "./Songs.css";
 
+// dummy data
+import DummySongs from "../../data/latest.json";
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
     maxWidth: 960,
-    margin: 'auto'
+    margin: "auto"
   },
   paper: {
     height: 140,
@@ -38,6 +41,10 @@ class Songs extends Component {
   }
 
   getSongs() {
+    // console.log(Song1);
+    // const songs = [ Song1 ];
+    // this.setState({ songs: DummySongs });
+    // TODO: uncomment for Prod
     fetch("https://dj-slacker.herokuapp.com/nowplaying", {
       mode: "cors"
     })
@@ -60,15 +67,18 @@ class Songs extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Grid container className={classes.root} spacing={16}>
-        {this.state.songs && this.state.songs.length > 0 ? (
-          this.renderSongs()
-        ) : (
-          <Grid item xs={12}>
-            It's too quiet in here... start some music
-          </Grid>
-        )}
-      </Grid>
+      <div>
+        <h2>Latest Jams</h2>
+        <Grid container className={classes.root} spacing={16}>
+          {this.state.songs && this.state.songs.length > 0 ? (
+            this.renderSongs()
+          ) : (
+            <Grid item xs={12}>
+              It's too quiet in here... start some music
+            </Grid>
+          )}
+        </Grid>
+      </div>
     );
   }
 }

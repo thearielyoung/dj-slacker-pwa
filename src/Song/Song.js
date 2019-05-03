@@ -23,34 +23,24 @@ function Song(props) {
   const { classes, song: songObject } = props;
   const { user, track } = songObject;
   return (
-    <Card key={user}>
+    <Card>
+      <CardMedia
+        component="iframe"
+        className="album-art"
+        src={`https://open.spotify.com/embed/track/${track.item.id}`}
+        width="100%"
+        height="95"
+        allowtransparency="true"
+        allow="encrypted-media"
+        frameborder="0"
+      />
       <CardContent>
-        <div>
-          <iframe
-            className="album-art"
-            src={`https://open.spotify.com/embed/track/${track.item.id}`}
-            width="100%"
-            height="80"
-            frameborder="0"
-            allowtransparency="true"
-            allow="encrypted-media"
-          />
-        </div>
         <Typography gutterBottom variant="h5" component="h2">
           {songObject.user}
         </Typography>
       </CardContent>
     </Card>
   );
-  // return (
-  //   <li className="song-info">
-  //   <span className="track">
-  //     {props.song.user}:
-
-  //     <iframe className="album-art" src={`https://open.spotify.com/embed/track/${props.song.track.item.id}`} width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-  //     </span>
-  // </li>
-  // );
 }
 
 export default withStyles(styles)(Song);

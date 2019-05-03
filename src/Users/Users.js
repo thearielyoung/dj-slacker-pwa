@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import User from '../User/User';
-import './Users.css'
+import React, { Component } from "react";
+import User from "../User/User";
+import "./Users.css";
 
 class Users extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      'users': []
-    }; 
+      users: []
+    };
   }
 
   componentWillMount() {
@@ -15,34 +15,35 @@ class Users extends Component {
   }
 
   componentDidMount() {
-    // setInterval(() => {this.getUsers()},10000);
+    setInterval(() => {
+      this.getUsers();
+    }, 10000);
   }
-
-
 
   getUsers() {
     fetch("https://dj-slacker.herokuapp.com/user", {
-      mode: 'cors'
+      mode: "cors"
     })
-    .then(results => {
-      return results.json();
-    } ) 
-    .then(users => {
-      this.setState({'users': users});
-    })
-    .catch(error => alert("An error happened " + error));
- }
+      .then(results => {
+        return results.json();
+      })
+      .then(users => {
+        this.setState({ users: users });
+      })
+      .catch(error => alert("An error happened " + error));
+  }
 
   render() {
     return (
-      <div id="test">
+      <div>
+        <h2>Contributing Users</h2>
         <ul>
           {this.state.users.map((item, index) => (
             <User user_id={item.id} spotify_id={item.spotify_id} />
           ))}
         </ul>
-    </div>
-    )
+      </div>
+    );
   }
 }
 
