@@ -2,9 +2,9 @@ import React from 'react';
 
 function User(props) {
   return (
-    <div className="user-info">
-    ${props.user_id}: ${props.spotify_id}
-  </div>
+    <li className="user-info">
+    {props.user_id}: {props.spotify_id}
+  </li>
   );
 }
 

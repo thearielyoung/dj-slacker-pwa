@@ -1,34 +1,32 @@
 import React, { Component } from 'react';
-import User from '../User/user';
-import './Users.css'
+import Song from '../Song/song';
+import './Songs.css'
 
-class Users extends Component {
+class Songs extends Component {
   constructor() {
     super()
     this.state = {
-      'users': []
+      'songs': []
     }; 
   }
 
   componentWillMount() {
-    this.getUsers();
+    this.getSongs();
   }
 
   componentDidMount() {
-    setInterval(() => {this.getUsers()},10000);
+    setInterval(() => {this.getSongs()},60000);
   }
 
-
-
-  getUsers() {
-    fetch("https://dj-slacker.herokuapp.com/user", {
+  getSongs() {
+    fetch("https://dj-slacker.herokuapp.com/nowplaying", {
       mode: 'cors'
     })
     .then(results => {
       return results.json();
     } ) 
-    .then(users => {
-      this.setState({'users': users});
+    .then(songs => {
+      this.setState({'songs': songs});
     })
     .catch(error => alert("An error happened " + error));
  }
@@ -37,8 +35,8 @@ class Users extends Component {
     return (
       <div id="test">
         <ul>
-          {this.state.users.map((item, index) => (
-            <User user_id={item.id} spotify_id={item.spotify_id} />
+          {this.state.songs.map((item, index) => (
+            <Song song={item} />
           ))}
         </ul>
     </div>
@@ -46,7 +44,7 @@ class Users extends Component {
   }
 }
 
-export default Users;
+export default Songs;
 
 // id
 // spotify_id
