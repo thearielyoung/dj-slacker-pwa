@@ -12,17 +12,3 @@ export function registerFetchHandler() {
         });
       }
 }
-
-self.addEventListener('fetch', function(e) {
-    console.log('[ServiceWorker] Fetch', e.request.url);
-    var dataUrl = 'https://publicdata-weather.firebaseio.com/';
-    if (e.request.url.indexOf(dataUrl) === 0) {
-      // Put data handler code here
-    } else {
-      e.respondWith(
-        caches.match(e.request).then(function(response) {
-          return response || fetch(e.request);
-        })
-      );
-    }
-});
