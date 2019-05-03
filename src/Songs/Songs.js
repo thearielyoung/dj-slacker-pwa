@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Song from '../Song/song';
+import Song from '../Song/Song';
 import './Songs.css'
 
 class Songs extends Component {
@@ -42,15 +42,6 @@ class Songs extends Component {
         <ul>
           {this.state.songs && this.state.songs.length > 0
             ? this.renderSongs() : <p>It's too quiet in here... start some music</p>}
-          {/* { if (this.state.songs && this.state.songs.length > 0) {
-            {
-              this.state.songs.map((item, index) => (
-                <Song song={item} />
-              ))
-            }
-          } else {
-            <p>It's too quiet in here... start some music</p>
-          }} */}
         </ul>
       </div>
     )
