@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import User from '../User/user';
+import User from '../User/User';
 import './Users.css'
 
 class Users extends Component {
