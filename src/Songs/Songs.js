@@ -1,12 +1,29 @@
-import React, { Component } from 'react';
-import Song from '../Song/Song';
-import './Songs.css'
+import React, { Component } from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Song from "../Song/Song";
+import "./Songs.css";
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+    maxWidth: 960,
+    margin: 'auto'
+  },
+  paper: {
+    height: 140,
+    width: 100
+  },
+  control: {
+    padding: theme.spacing.unit * 2
+  }
+});
 
 class Songs extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      'songs': []
+      songs: []
     };
   }
 
@@ -15,40 +32,48 @@ class Songs extends Component {
   }
 
   componentDidMount() {
-    setInterval(() => { this.getSongs() }, 60000);
+    setInterval(() => {
+      this.getSongs();
+    }, 60000);
   }
 
   getSongs() {
     fetch("https://dj-slacker.herokuapp.com/nowplaying", {
-      mode: 'cors'
+      mode: "cors"
     })
       .then(results => {
         return results.json();
       })
       .then(songs => {
-        this.setState({ 'songs': songs });
+        this.setState({ songs: songs });
       })
       .catch(error => alert("An error happened " + error));
   }
   renderSongs = () => {
     return this.state.songs.map((item, index) => (
-      <Song song={item} />
-    ))
-  }
+      <Grid item xs={16}>
+        <Song song={item} />
+      </Grid>
+    ));
+  };
 
   render() {
+    const { classes } = this.props;
     return (
-      <div id="test">
-        <ul>
-          {this.state.songs && this.state.songs.length > 0
-            ? this.renderSongs() : <p>It's too quiet in here... start some music</p>}
-        </ul>
-      </div>
-    )
+      <Grid container className={classes.root} spacing={16}>
+        {this.state.songs && this.state.songs.length > 0 ? (
+          this.renderSongs()
+        ) : (
+          <Grid item xs={12}>
+            It's too quiet in here... start some music
+          </Grid>
+        )}
+      </Grid>
+    );
   }
 }
 
-export default Songs;
+export default withStyles(styles)(Songs);
 
 // id
 // spotify_id

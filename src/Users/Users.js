@@ -15,7 +15,7 @@ class Users extends Component {
   }
 
   componentDidMount() {
-    //setInterval(() => {this.getUsers()},10000);
+    // setInterval(() => {this.getUsers()},10000);
   }
 
 
