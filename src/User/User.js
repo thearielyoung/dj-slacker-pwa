@@ -6,7 +6,7 @@ const style = {
 function User(props) {
   return (
     <li className="user-info" style={style}>
-      {props.spotify_id}
+      {props.name}
     </li>
   );
 }

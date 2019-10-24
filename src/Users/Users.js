@@ -39,7 +39,7 @@ class Users extends Component {
         <h2>Contributing Users</h2>
         <ul>
           {this.state.users.map((item, index) => (
-            <User user_id={item.id} spotify_id={item.spotify_id} />
+            <User name={item.name} user_id={item.id} spotify_id={item.spotify_id} />
           ))}
         </ul>
       </div>
