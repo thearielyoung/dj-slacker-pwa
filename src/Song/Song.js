@@ -21,14 +21,23 @@ const styles = {
 
 function Song(props) {
   const { classes, song: songObject } = props;
-  const { user, track } = songObject;
+  const { user, track, track_id } = songObject;
 
-  const handleLike = function(e) {
- 
+  const handleLike = function(e, track) {
+    fetch(`https://dj-slacker.herokuapp.com/rate?trackId=${track}&like=1`, {
+      mode: "cors"
+    })
+      .then(results => {
+        return results.json();
+      })
+      .then(songs => {
+        this.setState({ songs: songs });
+      })
+      .catch(error => alert("An error happened " + error));
   }
 
   const handleDislike = function(e) {
-    
+
   }
 
   return (
@@ -36,7 +45,7 @@ function Song(props) {
       <CardMedia
         component="iframe"
         className="album-art"
-        src={`https://open.spotify.com/embed/track/${track.item.id}`}
+        src={`https://open.spotify.com/embed/track/${track.id}`}
         width="100%"
         height="95"
         allowtransparency="true"
@@ -49,10 +58,10 @@ function Song(props) {
         </Typography>
         <CardActionArea>
           <CardActions>
-          <Button variant="outlined" color="primary" className={classes.button} onClick={(e) => handleLike(e)}>
+          <Button variant="outlined" color="primary" className={classes.button} onClick={(e) => handleLike(e, track_id)}>
             Like
           </Button>
-          <Button variant="outlined" color="secondary" className={classes.button} onClick={(e) => handleDislike(e)}>
+          <Button variant="outlined" color="secondary" className={classes.button} onClick={(e) => handleDislike(e, track_id)}>
             Dislike
           </Button>
           </CardActions>
