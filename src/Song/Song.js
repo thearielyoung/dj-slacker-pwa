@@ -30,7 +30,7 @@ function Song(props) {
   const [currentComment, setCurrentComment] = useState("");
 
   const handleLike = function(e, track) {
-    fetch(`https://dj-slacker.herokuapp.com/rate?trackId=${track}&like=1`, {
+    fetch(`https://dj-slacker.herokuapp.com/rate?track_id=${track}`, {
       mode: "cors"
     })
       .then(results => {
@@ -42,7 +42,19 @@ function Song(props) {
       .catch(error => alert("An error happened " + error));
   }
 
-  const handleDislike = function(e) {};
+  const handleDislike = function(e, track) {
+      fetch(`https://dj-slacker.herokuapp.com/unlike?track_id=${track}`, {
+        mode: "cors"
+      })
+      .then(results => {
+        return results.json();
+      })
+      .then(songs => {
+        this.setState({ songs: songs });
+      })
+      .catch(error => alert("An error happened " + error));
+  };
+
   const addComment = event => {
     if (event.keyCode === 13) {
       event.preventDefault();
