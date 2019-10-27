@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import Songs from "./Songs/Songs";
 import "./App.css";
 import LIkedSongs from "./LIkedSongs/LIkedSongs";
+import PlayedSongs from "./PlayedSongs/PlayedSongs";
 
 const styles = {
   root: {
@@ -35,8 +36,11 @@ class App extends Component {
           <Grid item xs={12} sm={8}>
             <Songs />
           </Grid>
-          <Grid item xs={12} sm={8}>
+          <Grid item xs={12} sm={4}>
             <LIkedSongs />
+          </Grid>
+          <Grid item xs={12} sm={8}>
+            <PlayedSongs />
           </Grid>
         </Grid>
         <Grid container spacing={12} style={styles.footer}>

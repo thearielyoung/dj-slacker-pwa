@@ -9,7 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import "./LikedSong.css";
+import "./PlayedSong.css";
 
 const styles = {
   card: {
@@ -23,7 +23,7 @@ const styles = {
   }
 };
 
-function LikedSong(props) {
+function PlayedSong(props) {
   const { classes, song: songObject } = props;
   const { spotify_id, track_id, likes } = songObject;
   const [comments, setComments] = useState([]);
@@ -76,7 +76,7 @@ function LikedSong(props) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          Liked {likes} times
+          Played {likes} times
         </Typography>
         <CardActionArea>
           <CardActions>
@@ -110,7 +110,7 @@ function LikedSong(props) {
   );
 }
 
-export default withStyles(styles)(LikedSong);
+export default withStyles(styles)(PlayedSong);
 // id
 // spotify_id
 // auth_token

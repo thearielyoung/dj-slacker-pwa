@@ -52,6 +52,7 @@ class LikedSongs extends Component {
         return results.json();
       })
       .then(songs => {
+        alert(JSON.stringify(songs));
         this.setState({ songs: songs });
       })
       .catch(error => alert("An error happened " + error));

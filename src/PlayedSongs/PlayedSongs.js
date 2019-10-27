@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import LikedSong from "../LikedSong/LikedSong";
-import "./LikedSongs.css";
+import PlayedSong from "../PlayedSong/PlayedSong";
+import "./PlayedSongs.css";
 
 // dummy data
 import DummySongs from "../../data/latest.json";
@@ -22,7 +22,7 @@ const styles = theme => ({
   }
 });
 
-class LikedSongs extends Component {
+class PlayedSongs extends Component {
   constructor() {
     super();
     this.state = {
@@ -45,7 +45,7 @@ class LikedSongs extends Component {
     // const songs = [ Song1 ];
     // this.setState({ songs: DummySongs });
     // TODO: uncomment for Prod
-    fetch("https://dj-slacker.herokuapp.com/mostLikedSongs", {
+    fetch("https://dj-slacker.herokuapp.com/mostPlayedSongs", {
       mode: "cors"
     })
       .then(results => {
@@ -59,7 +59,7 @@ class LikedSongs extends Component {
   renderSongs = () => {
     return this.state.songs.map((item, index) => (
       <Grid item xs={16}>
-        <LikedSong song={item} />
+        <PlayedSong song={item} />
       </Grid>
     ));
   };
@@ -68,7 +68,7 @@ class LikedSongs extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <h2>Most Liked Jams</h2>
+        <h2>Most Played Jams</h2>
         <Grid container className={classes.root} spacing={16}>
           {this.state.songs && this.state.songs.length > 0 ? (
             this.renderSongs()
@@ -83,7 +83,7 @@ class LikedSongs extends Component {
   }
 }
 
-export default withStyles(styles)(LikedSongs);
+export default withStyles(styles)(PlayedSongs);
 
 // id
 // spotify_id

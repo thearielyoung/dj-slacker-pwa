@@ -88,14 +88,6 @@ function Song(props) {
             >
               Like
             </Button>
-            <Button
-              variant="outlined"
-              color="secondary"
-              className={classes.button}
-              onClick={e => handleDislike(e, track_id)}
-            >
-              Dislike
-            </Button>
           </CardActions>
           <TextField
             id="standard-comment"
