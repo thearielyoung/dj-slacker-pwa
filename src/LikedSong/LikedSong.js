@@ -9,7 +9,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import "./Song.css";
+import "./LikedSong.css";
 
 const styles = {
   card: {
@@ -23,14 +23,15 @@ const styles = {
   }
 };
 
-function Song(props) {
+function LikedSong(props) {
   const { classes, song: songObject } = props;
-  const { user, track, track_id } = songObject;
+  const { spotify_id, track_id, likes } = songObject;
   const [comments, setComments] = useState([]);
   const [currentComment, setCurrentComment] = useState("");
 
+
   const handleLike = function(e, track) {
-    fetch(`https://dj-slacker.herokuapp.com/rate?track_id=${track}`, {
+    fetch(`https://dj-slacker.herokuapp.com/rate?track_id=${track_id}`, {
       mode: "cors"
     })
       .then(results => {
@@ -40,7 +41,7 @@ function Song(props) {
   }
 
   const handleDislike = function(e, track) {
-      fetch(`https://dj-slacker.herokuapp.com/unlike?track_id=${track}`, {
+      fetch(`https://dj-slacker.herokuapp.com/unlike?track_id=${track_id}`, {
         mode: "cors"
       })
       .then(results => {
@@ -66,7 +67,7 @@ function Song(props) {
       <CardMedia
         component="iframe"
         className="album-art"
-        src={`https://open.spotify.com/embed/track/${track.id}`}
+        src={`https://open.spotify.com/embed/track/${spotify_id}`}
         width="100%"
         height="95"
         allowtransparency="true"
@@ -75,7 +76,7 @@ function Song(props) {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          {songObject.user}
+          Liked {likes} times
         </Typography>
         <CardActionArea>
           <CardActions>
@@ -109,7 +110,7 @@ function Song(props) {
   );
 }
 
-export default withStyles(styles)(Song);
+export default withStyles(styles)(LikedSong);
 // id
 // spotify_id
 // auth_token
