@@ -44,7 +44,7 @@ class App extends Component {
           </Grid>
         </Grid>
         <Grid container spacing={12} style={styles.footer}>
-          Developed By: John. R | Ariel | Jackie 🤘
+          Developed By: John. R | Ariel | Jackie | Varun | Andrew 🤘
         </Grid>
       </div>
     );
