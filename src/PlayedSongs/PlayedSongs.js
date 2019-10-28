@@ -26,7 +26,8 @@ class PlayedSongs extends Component {
   constructor() {
     super();
     this.state = {
-      songs: []
+      songs: [],
+      displayed: false
     };
   }
 
@@ -64,20 +65,31 @@ class PlayedSongs extends Component {
     ));
   };
 
+
+  toggleHideJams = () => {
+        let displayed = this.state.displayed;
+        this.setState({
+            displayed: !displayed
+        })
+  };
+
   render() {
     const { classes } = this.props;
+    const { displayed } = this.state;
     return (
       <div>
-        <h2>Most Played Jams</h2>
-        <Grid container className={classes.root} spacing={16}>
-          {this.state.songs && this.state.songs.length > 0 ? (
-            this.renderSongs()
-          ) : (
-            <Grid item xs={12}>
-              
-            </Grid>
-          )}
-        </Grid>
+        <h2 onClick={() => this.toggleHideJams()} className="clickableHeader">Most Played Jams</h2>
+        <div className={displayed ? '' : 'hidden'}>
+          <Grid container className={classes.root} spacing={16}>
+            {this.state.songs && this.state.songs.length > 0 ? (
+              this.renderSongs()
+            ) : (
+              <Grid item xs={12}>
+
+              </Grid>
+            )}
+          </Grid>
+        </div>
       </div>
     );
   }
